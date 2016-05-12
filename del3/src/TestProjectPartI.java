@@ -5,7 +5,7 @@
 
 class TestProjectPartI {
 
-    public static void test() {
+    public static void main(String[] args) {
 
 	System.out.println();
 	System.out.println("Creating a PQHeap with room for 10 elements");

@@ -13,6 +13,7 @@ public class huffman {
 	static ArrayList<Integer> frequencies = new ArrayList<>(); 
 	
 	public static void main(String[] args) throws Exception {
+		//map frequencies of ascii
 		doFrequencies(args);
 		
 		//initialize n and Q as BUILD MIN HEAP
@@ -32,6 +33,9 @@ public class huffman {
 			Element z = new Element(x.key + y.key, null);
 			Q.insert(z); 
 		}
+		
+		//map ascii to bits
+		doBits(args, Q);
 	}
 	
 // makes arraylist with frequencies of different characters as ascii in the input file
@@ -57,5 +61,22 @@ public class huffman {
 			frequencies.add(entry.getValue());
 			frequencies.add(entry.getKey());
 		}
+	}
+	
+	public static void doBits(String[] args, PQ Q) throws Exception {
+		int i;
+		Map<Integer, Integer> tempMap = new HashMap<> ();
+
+		FileInputStream inFile = new FileInputStream(args[0]);
+
+		Reader in = new InputStreamReader(inFile, "UTF-8");
+		
+		while ((i = in.read()) != -1) {
+			if (tempMap.get(i) == null) {
+				Q.search(i);
+				tempMap.put(i, (code it found along the way));
+			}
+		}
+		in.close();
 	}
 }
